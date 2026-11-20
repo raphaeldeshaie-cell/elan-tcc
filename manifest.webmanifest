@@ -1,0 +1,19 @@
+{
+  "name": "ÉLAN — TCC & bien-être",
+  "short_name": "ÉLAN",
+  "description": "Carnet personnel TCC, activation comportementale et méthode Vittoz",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#102b3a",
+  "theme_color": "#102b3a",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

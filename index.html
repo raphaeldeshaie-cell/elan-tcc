@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#102b3a"><meta name="description" content="ÉLAN — accompagnement personnel TCC, activation comportementale et méthode Vittoz.">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icons/icon.svg"><link rel="stylesheet" href="style.css">
+<title>ÉLAN — TCC & bien-être</title>
+</head>
+<body>
+<header class="top"><div class="brand"><span class="sun">☼</span><div><strong>ÉLAN</strong><small>TCC · mieux-être · action</small></div></div><button id="profileShortcut" class="quiet">Mon profil</button></header>
+<main>
+<section id="home" class="screen active">
+ <div class="hero"><p class="eyebrow">UN PAS À LA FOIS</p><h1 id="greeting">Bonjour</h1><p>Avance à ton rythme. Un petit pas réaliste vaut mieux qu'un grand projet qui reste en attente.</p><div class="hero-actions"><button class="primary" data-go="activities">＋ Programmer une action</button><button class="secondary" data-go="daily">Mon exercice du jour</button></div></div>
+ <div class="stats"><div><strong id="streak">0</strong><span>jour(s) de pratique</span></div><div><strong id="moodAverage">—</strong><span>humeur moyenne /10</span></div><div><strong id="doneCount">0</strong><span>actions réalisées</span></div></div>
+ <div class="grid2">
+  <article class="tile"><span>🌱</span><h3>Activation comportementale</h3><p id="activityCount">Mon programme d'actions</p><button class="textbtn" data-go="activities">Ouvrir →</button></article>
+  <article class="tile"><span>🧠</span><h3>Restructuration cognitive</h3><p>Examiner une pensée automatique.</p><button class="textbtn" data-go="thoughts">Ouvrir →</button></article>
+  <article class="tile"><span>💙</span><h3>Humeur & émotions</h3><p>Observer mon état et son évolution.</p><button class="textbtn" data-go="mood">Ouvrir →</button></article>
+  <article class="tile"><span>🌊</span><h3>Cohérence cardiaque</h3><p>Respiration guidée 5 secondes / 5 secondes.</p><button class="textbtn" data-go="breathing">Ouvrir →</button></article>
+  <article class="tile"><span>🪨</span><h3>Méthode Vittoz</h3><p>Développer présence et attention.</p><button class="textbtn" data-go="vittoz">Ouvrir →</button></article>
+  <article class="tile"><span>🔥</span><h3>Volonté & procrastination</h3><p>Un entraînement progressif sur 14 jours.</p><button class="textbtn" data-go="will">Ouvrir →</button></article>
+ </div>
+ <p class="notice">ÉLAN est un outil d'auto-observation et d'exercices. Il ne pose aucun diagnostic et ne remplace pas un suivi médical ou psychologique.</p>
+</section>
+
+<section id="activities" class="screen">
+ <div class="section-head"><p class="eyebrow">ACTIVATION COMPORTEMENTALE</p><h1>Mes petites actions</h1><p>Planifie des actions concrètes, courtes et réalisables. Observe ensuite le plaisir et le sentiment d'accomplissement.</p></div>
+ <form id="activityForm" class="panel"><h2>Programmer une activité</h2><label for="actTitle">Que souhaites-tu faire ?</label><input id="actTitle" required maxlength="100" placeholder="Ex. marcher 10 minutes"><div class="two"><div><label for="actDate">Date</label><input id="actDate" type="date" required></div><div><label for="actTime">Heure</label><input id="actTime" type="time" required value="10:00"></div></div><label for="actNote">Comment faciliter cette action ?</label><textarea id="actNote" rows="2" placeholder="Lieu, matériel, personne, première étape…"></textarea><button class="primary full">Ajouter l'activité</button></form>
+ <div class="row-between"><h2>Mon programme</h2><button id="exportAll" class="secondary small">Exporter agenda (.ics)</button></div><div id="activityList" class="stack"></div>
+</section>
+
+<section id="thoughts" class="screen">
+ <div class="section-head"><p class="eyebrow">RESTRUCTURATION COGNITIVE</p><h1>Prendre du recul</h1><p>Une pensée est une interprétation, pas nécessairement un fait. Explore-la avec curiosité.</p></div>
+ <form id="thoughtForm" class="panel">
+  <label for="situation">1. Situation — que s'est-il passé concrètement ?</label><textarea id="situation" rows="2"></textarea>
+  <label for="emotion">2. Émotion et intensité (0–100)</label><input id="emotion" placeholder="Ex. anxiété — 70/100">
+  <label for="autoThought">3. Pensée automatique</label><textarea id="autoThought" rows="2" placeholder="Ex. Je n'y arriverai jamais."></textarea>
+  <label for="evidenceFor">4. Éléments qui semblent confirmer cette pensée</label><textarea id="evidenceFor" rows="2"></textarea>
+  <label for="evidenceAgainst">5. Éléments qui la nuancent ou la contredisent</label><textarea id="evidenceAgainst" rows="2"></textarea>
+  <label for="balanced">6. Pensée alternative, plus équilibrée et crédible</label><textarea id="balanced" rows="3"></textarea>
+  <label for="emotionAfter">7. Émotion après réflexion (facultatif)</label><input id="emotionAfter" placeholder="Ex. anxiété — 45/100">
+  <button class="primary full">Enregistrer mon exercice</button>
+ </form><div id="thoughtHistory" class="stack"></div>
+</section>
+
+<section id="mood" class="screen">
+ <div class="section-head"><p class="eyebrow">OBSERVATION QUOTIDIENNE</p><h1>Mon humeur</h1><p>Il ne s'agit pas de réussir une bonne journée, mais de repérer ce qui influence ton état.</p></div>
+ <form id="moodForm" class="panel"><label for="moodDate">Date</label><input id="moodDate" type="date" required><label for="moodValue">Humeur générale : <output id="moodOut">5</output>/10</label><input id="moodValue" type="range" min="0" max="10" value="5"><label for="moodEmotion">Émotion dominante</label><input id="moodEmotion" placeholder="Ex. calme, tristesse, anxiété, joie…"><label for="moodContext">Ce qui a pu influencer mon humeur</label><textarea id="moodContext" rows="3" placeholder="Sommeil, activité, échange, événement…"></textarea><button class="primary full">Enregistrer mon humeur</button></form>
+ <article class="panel"><h2>Mon évolution</h2><div id="moodChart" class="chart" aria-label="Graphique de l'humeur"></div><div id="moodHistory" class="stack compact"></div></article>
+</section>
+
+<section id="daily" class="screen">
+ <div class="section-head"><p class="eyebrow">PETIT PAS DU JOUR</p><h1>Mon exercice quotidien</h1><p>Choisis une action modeste. L'objectif est la régularité, pas la performance.</p></div>
+ <article class="panel"><p class="eyebrow">PROPOSITION DU JOUR</p><h2 id="dailyTitle">Faire une première action de deux minutes</h2><p id="dailyText">Choisis une tâche que tu repousses. Prépare uniquement le matériel ou réalise la toute première étape pendant deux minutes.</p><button id="dailyComplete" class="primary full">J'ai fait mon petit pas</button><p id="dailyFeedback" class="feedback"></p></article>
+ <article class="panel"><h2>Mon intention</h2><textarea id="dailyIntent" rows="3" placeholder="Aujourd'hui, le petit pas que je choisis est…"></textarea><button id="saveIntent" class="secondary full">Enregistrer mon intention</button></article>
+</section>
+
+<section id="will" class="screen">
+ <div class="section-head"><p class="eyebrow">ENTRAÎNEMENT DE LA VOLONTÉ</p><h1>14 jours pour passer à l'action</h1><p>Inspiré d'exercices de présence, de décision et d'engagement. Cinq minutes par jour suffisent.</p></div>
+ <div class="panel"><div class="row-between dark"><h2>Ma progression</h2><strong id="willProgress">0 / 14</strong></div><div class="progress"><span id="willBar"></span></div><p id="willDayLabel"></p><h2 id="willTitle"></h2><p id="willInstruction"></p><label for="willNote">Mon observation (facultatif)</label><textarea id="willNote" rows="2" placeholder="Qu'ai-je remarqué ?"></textarea><button id="willDone" class="primary full">Valider cette journée</button><div class="daygrid" id="willDays"></div></div>
+</section>
+
+<section id="breathing" class="screen">
+ <div class="section-head"><p class="eyebrow">PAUSE RESPIRATION</p><h1>Au rythme des vagues</h1><p>Inspire 5 secondes, expire 5 secondes, sans forcer. Si tu ressens un inconfort, reprends une respiration naturelle.</p></div>
+ <div class="breath-panel"><div id="breathCircle" class="breath-circle"><span id="breathText">Prêt ?</span></div><p id="breathTimer" class="timer">5 · 5</p><div class="controls"><button id="breathStart" class="primary">Commencer</button><button id="breathStop" class="secondary">Arrêter</button></div></div>
+ <div class="panel"><label class="switchline"><span>🌊 Son de vague doux</span><input id="waveToggle" type="checkbox"></label><label class="switchline"><span>📳 Vibration à chaque phase</span><input id="vibeToggle" type="checkbox"></label></div>
+ <p class="notice">La vibration dépend du navigateur et de l'appareil. Le son démarre après une action volontaire sur « Commencer ».</p>
+</section>
+
+<section id="vittoz" class="screen">
+ <div class="section-head"><p class="eyebrow">MÉTHODE VITTOZ</p><h1>Revenir aux sensations</h1><p>Exercices d'attention sensorielle et de présence, à pratiquer sans recherche de performance.</p></div>
+ <article class="panel"><h2>La présence par les sens · 2 minutes</h2><ol class="steps"><li>Pose les pieds au sol et prends le temps de t'installer.</li><li>Regarde autour de toi et repère trois choses que tu vois.</li><li>Écoute deux sons, proches ou lointains.</li><li>Repère une sensation corporelle neutre : contact des pieds, température des mains, appui du dos.</li><li>Termine par une respiration tranquille.</li></ol><button id="vittozDone" class="primary full">J'ai terminé l'exercice</button><p id="vittozFeedback" class="feedback"></p></article>
+ <article class="panel"><h2>La petite ardoise</h2><p>Dépose par écrit ce qui encombre ton esprit, puis choisis un point d'attention concret.</p><textarea id="slate" rows="4" placeholder="Je dépose ici ce qui m'occupe…"></textarea><label for="focusNow">Mon point d'attention maintenant</label><input id="focusNow" placeholder="Ex. préparer une tasse de thé"><button id="slateClear" class="secondary full">Effacer l'ardoise</button></article>
+</section>
+
+<section id="settings" class="screen">
+ <div class="section-head"><p class="eyebrow">RÉGLAGES</p><h1>Mon espace personnel</h1></div>
+ <div class="panel"><label for="profileName">Comment souhaites-tu être appelé(e) ?</label><input id="profileName" maxlength="40" placeholder="Ton prénom"><button id="saveName" class="primary full">Enregistrer</button></div>
+ <div class="panel"><h2>Rappels & agenda</h2><p>L'export .ics ajoute un événement et une alarme de 15 minutes dans ton agenda. Les notifications locales de Chrome ne garantissent pas une alerte à heure fixe lorsque l'application est fermée.</p><button id="notifyPermission" class="secondary full">Autoriser les notifications</button><p id="notifyStatus" class="feedback"></p></div>
+ <div class="panel"><h2>Sauvegarde</h2><p>Les données restent sur cet appareil dans le stockage du navigateur. Télécharge régulièrement une sauvegarde.</p><button id="backup" class="secondary full">Télécharger une sauvegarde JSON</button><label for="restoreFile">Restaurer une sauvegarde</label><input id="restoreFile" type="file" accept="application/json"><button id="clearData" class="danger full">Effacer toutes mes données</button></div>
+</section>
+</main>
+<nav class="bottom-nav"><button class="navitem selected" data-go="home">⌂<small>Accueil</small></button><button class="navitem" data-go="activities">＋<small>Actions</small></button><button class="navitem" data-go="thoughts">◉<small>Pensées</small></button><button class="navitem" data-go="mood">♡<small>Humeur</small></button><button class="navitem" data-go="settings">⚙<small>Réglages</small></button></nav>
+<dialog id="reviewDialog"><form method="dialog" id="reviewForm" class="dialog-content"><button class="close" value="cancel">×</button><p class="eyebrow">BILAN DE L'ACTIVITÉ</p><h2 id="reviewTitle">Comment cela s'est-il passé ?</h2><label for="reviewStatus">Résultat</label><select id="reviewStatus"><option value="done">Réalisée</option><option value="postponed">Reportée</option><option value="missed">Non réalisée</option></select><label for="reviewReason">Bilan / raison (obligatoire si reportée ou non réalisée)</label><textarea id="reviewReason" rows="4"></textarea><label for="pleasure">Plaisir ressenti : <output id="pleasureOut">5</output>/10</label><input id="pleasure" type="range" min="0" max="10" value="5"><label for="mastery">Accomplissement : <output id="masteryOut">5</output>/10</label><input id="mastery" type="range" min="0" max="10" value="5"><button class="primary full" id="saveReview" value="save">Enregistrer le bilan</button></form></dialog>
+<script src="app.js"></script>
+</body></html>
